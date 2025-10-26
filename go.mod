@@ -1,4 +1,4 @@
-module github.com/JulieWasNotAvailable/proto
+module github.com/JulieWasNotAvailable/protos
 
 go 1.25.3
 

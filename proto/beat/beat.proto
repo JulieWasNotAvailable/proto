@@ -6,7 +6,7 @@ option go_package = "github.com/JulieWasNotAvailable/proto/gen/go/beat;beatv1";
 
 // Beat is service for managing beats
 service Beat {
-  rpc GetBeatById(GetBeatRequest) returns (GetBeatRequest); 
+  rpc GetBeatById(GetBeatRequest) returns (GetBeatResponse); 
 }
 
 
@@ -36,34 +36,3 @@ message GetBeatResponse {
   string status = 19;
   int64 created_at = 20;
 }
-
-
-// message RegisterResponse {
-//   int64 user_id = 1; // User ID of the registered user.
-// }
-
-// message LoginRequest {
-//   string email = 1; // Email of the user to login.
-//   string password = 2; // Password of the user to login.
-//   int32 app_id = 3; // ID of the app to login to.
-// }
-
-// message IsAdminRequest {
-  //   int64 user_id = 1; // User ID to validate.
-// }
-
-// message IsAdminResponse {
-//   bool is_admin = 1;  // Indicates whether the user is an admin.
-// }
-
-// message LoginResponse {
-//   string token = 1; // Auth token of the logged in user.
-// }
-
-// message LogoutRequest {
-//   string token = 1; // Auth token of the user to logout.
-// }
-
-// message LogoutResponse {
-//   bool success = 1; // Indicates whether the logout was successful.
-// }
