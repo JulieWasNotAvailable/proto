@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package beat;
 
-option go_package = "github.com/JulieWasNotAvailable/proto/gen/go/beat;beatv1";
+option go_package = "github.com/JulieWasNotAvailable/protos/gen/go/beat;beatv1";
 
 // Beat is service for managing beats
 service Beat {

@@ -237,7 +237,7 @@ const file_beat_beat_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x14 \x01(\x03R\tcreatedAt2B\n" +
 	"\x04Beat\x12:\n" +
-	"\vGetBeatById\x12\x14.beat.GetBeatRequest\x1a\x15.beat.GetBeatResponseB:Z8github.com/JulieWasNotAvailable/proto/gen/go/beat;beatv1b\x06proto3"
+	"\vGetBeatById\x12\x14.beat.GetBeatRequest\x1a\x15.beat.GetBeatResponseB;Z9github.com/JulieWasNotAvailable/protos/gen/go/beat;beatv1b\x06proto3"
 
 var (
 	file_beat_beat_proto_rawDescOnce sync.Once
