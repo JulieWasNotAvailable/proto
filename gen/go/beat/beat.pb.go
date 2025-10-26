@@ -21,27 +21,27 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type GetBeatRequest struct {
+type GetBeatsRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	BeatId        string                 `protobuf:"bytes,1,opt,name=beat_id,json=beatId,proto3" json:"beat_id,omitempty"` // Beat id, = 1 stays for the number of the field (kinda like a key), string is cuz it's a uuid
+	BeatId        []string               `protobuf:"bytes,1,rep,name=beat_id,json=beatId,proto3" json:"beat_id,omitempty"` // Beat id, = 1 stays for the number of the field (kinda like a key), string is cuz it's a uuid
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetBeatRequest) Reset() {
-	*x = GetBeatRequest{}
+func (x *GetBeatsRequest) Reset() {
+	*x = GetBeatsRequest{}
 	mi := &file_beat_beat_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetBeatRequest) String() string {
+func (x *GetBeatsRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetBeatRequest) ProtoMessage() {}
+func (*GetBeatsRequest) ProtoMessage() {}
 
-func (x *GetBeatRequest) ProtoReflect() protoreflect.Message {
+func (x *GetBeatsRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_beat_beat_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -53,19 +53,63 @@ func (x *GetBeatRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetBeatRequest.ProtoReflect.Descriptor instead.
-func (*GetBeatRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetBeatsRequest.ProtoReflect.Descriptor instead.
+func (*GetBeatsRequest) Descriptor() ([]byte, []int) {
 	return file_beat_beat_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *GetBeatRequest) GetBeatId() string {
+func (x *GetBeatsRequest) GetBeatId() []string {
 	if x != nil {
 		return x.BeatId
 	}
-	return ""
+	return nil
 }
 
-type GetBeatResponse struct {
+type GetBeatsResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Beats         []*BeatInfo            `protobuf:"bytes,1,rep,name=beats,proto3" json:"beats,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetBeatsResponse) Reset() {
+	*x = GetBeatsResponse{}
+	mi := &file_beat_beat_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetBeatsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetBeatsResponse) ProtoMessage() {}
+
+func (x *GetBeatsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_beat_beat_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetBeatsResponse.ProtoReflect.Descriptor instead.
+func (*GetBeatsResponse) Descriptor() ([]byte, []int) {
+	return file_beat_beat_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *GetBeatsResponse) GetBeats() []*BeatInfo {
+	if x != nil {
+		return x.Beats
+	}
+	return nil
+}
+
+type BeatInfo struct {
 	state  protoimpl.MessageState `protogen:"open.v1"`
 	BeatId string                 `protobuf:"bytes,1,opt,name=beat_id,json=beatId,proto3" json:"beat_id,omitempty"`
 	Name   string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
@@ -91,21 +135,21 @@ type GetBeatResponse struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetBeatResponse) Reset() {
-	*x = GetBeatResponse{}
-	mi := &file_beat_beat_proto_msgTypes[1]
+func (x *BeatInfo) Reset() {
+	*x = BeatInfo{}
+	mi := &file_beat_beat_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetBeatResponse) String() string {
+func (x *BeatInfo) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetBeatResponse) ProtoMessage() {}
+func (*BeatInfo) ProtoMessage() {}
 
-func (x *GetBeatResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_beat_beat_proto_msgTypes[1]
+func (x *BeatInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_beat_beat_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -116,96 +160,96 @@ func (x *GetBeatResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetBeatResponse.ProtoReflect.Descriptor instead.
-func (*GetBeatResponse) Descriptor() ([]byte, []int) {
-	return file_beat_beat_proto_rawDescGZIP(), []int{1}
+// Deprecated: Use BeatInfo.ProtoReflect.Descriptor instead.
+func (*BeatInfo) Descriptor() ([]byte, []int) {
+	return file_beat_beat_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetBeatResponse) GetBeatId() string {
+func (x *BeatInfo) GetBeatId() string {
 	if x != nil {
 		return x.BeatId
 	}
 	return ""
 }
 
-func (x *GetBeatResponse) GetName() string {
+func (x *BeatInfo) GetName() string {
 	if x != nil {
 		return x.Name
 	}
 	return ""
 }
 
-func (x *GetBeatResponse) GetPicture() string {
+func (x *BeatInfo) GetPicture() string {
 	if x != nil {
 		return x.Picture
 	}
 	return ""
 }
 
-func (x *GetBeatResponse) GetBeatmakerId() string {
+func (x *BeatInfo) GetBeatmakerId() string {
 	if x != nil {
 		return x.BeatmakerId
 	}
 	return ""
 }
 
-func (x *GetBeatResponse) GetBeatmakerName() string {
+func (x *BeatInfo) GetBeatmakerName() string {
 	if x != nil {
 		return x.BeatmakerName
 	}
 	return ""
 }
 
-func (x *GetBeatResponse) GetUrl() string {
+func (x *BeatInfo) GetUrl() string {
 	if x != nil {
 		return x.Url
 	}
 	return ""
 }
 
-func (x *GetBeatResponse) GetPrice() uint32 {
+func (x *BeatInfo) GetPrice() uint32 {
 	if x != nil {
 		return x.Price
 	}
 	return 0
 }
 
-func (x *GetBeatResponse) GetBpm() uint32 {
+func (x *BeatInfo) GetBpm() uint32 {
 	if x != nil {
 		return x.Bpm
 	}
 	return 0
 }
 
-func (x *GetBeatResponse) GetDescription() string {
+func (x *BeatInfo) GetDescription() string {
 	if x != nil {
 		return x.Description
 	}
 	return ""
 }
 
-func (x *GetBeatResponse) GetKeynoteId() uint32 {
+func (x *BeatInfo) GetKeynoteId() uint32 {
 	if x != nil {
 		return x.KeynoteId
 	}
 	return 0
 }
 
-func (x *GetBeatResponse) GetPlays() int64 {
+func (x *BeatInfo) GetPlays() int64 {
 	if x != nil {
 		return x.Plays
 	}
 	return 0
 }
 
-func (x *GetBeatResponse) GetStatus() string {
+func (x *BeatInfo) GetStatus() string {
 	if x != nil {
 		return x.Status
 	}
 	return ""
 }
 
-func (x *GetBeatResponse) GetCreatedAt() int64 {
+func (x *BeatInfo) GetCreatedAt() int64 {
 	if x != nil {
 		return x.CreatedAt
 	}
@@ -216,10 +260,12 @@ var File_beat_beat_proto protoreflect.FileDescriptor
 
 const file_beat_beat_proto_rawDesc = "" +
 	"\n" +
-	"\x0fbeat/beat.proto\x12\x04beat\")\n" +
-	"\x0eGetBeatRequest\x12\x17\n" +
-	"\abeat_id\x18\x01 \x01(\tR\x06beatId\"\xe9\x02\n" +
-	"\x0fGetBeatResponse\x12\x17\n" +
+	"\x0fbeat/beat.proto\x12\x04beat\"*\n" +
+	"\x0fGetBeatsRequest\x12\x17\n" +
+	"\abeat_id\x18\x01 \x03(\tR\x06beatId\"8\n" +
+	"\x10GetBeatsResponse\x12$\n" +
+	"\x05beats\x18\x01 \x03(\v2\x0e.beat.BeatInfoR\x05beats\"\xe2\x02\n" +
+	"\bBeatInfo\x12\x17\n" +
 	"\abeat_id\x18\x01 \x01(\tR\x06beatId\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
 	"\apicture\x18\x04 \x01(\tR\apicture\x12!\n" +
@@ -235,9 +281,9 @@ const file_beat_beat_proto_rawDesc = "" +
 	"\x05plays\x18\x12 \x01(\x03R\x05plays\x12\x16\n" +
 	"\x06status\x18\x13 \x01(\tR\x06status\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x14 \x01(\x03R\tcreatedAt2B\n" +
-	"\x04Beat\x12:\n" +
-	"\vGetBeatById\x12\x14.beat.GetBeatRequest\x1a\x15.beat.GetBeatResponseB;Z9github.com/JulieWasNotAvailable/protos/gen/go/beat;beatv1b\x06proto3"
+	"created_at\x18\x14 \x01(\x03R\tcreatedAt2F\n" +
+	"\x04Beat\x12>\n" +
+	"\rGetBeatsByIds\x12\x15.beat.GetBeatsRequest\x1a\x16.beat.GetBeatsResponseB;Z9github.com/JulieWasNotAvailable/protos/gen/go/beat;beatv1b\x06proto3"
 
 var (
 	file_beat_beat_proto_rawDescOnce sync.Once
@@ -251,19 +297,21 @@ func file_beat_beat_proto_rawDescGZIP() []byte {
 	return file_beat_beat_proto_rawDescData
 }
 
-var file_beat_beat_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_beat_beat_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_beat_beat_proto_goTypes = []any{
-	(*GetBeatRequest)(nil),  // 0: beat.GetBeatRequest
-	(*GetBeatResponse)(nil), // 1: beat.GetBeatResponse
+	(*GetBeatsRequest)(nil),  // 0: beat.GetBeatsRequest
+	(*GetBeatsResponse)(nil), // 1: beat.GetBeatsResponse
+	(*BeatInfo)(nil),         // 2: beat.BeatInfo
 }
 var file_beat_beat_proto_depIdxs = []int32{
-	0, // 0: beat.Beat.GetBeatById:input_type -> beat.GetBeatRequest
-	1, // 1: beat.Beat.GetBeatById:output_type -> beat.GetBeatResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	2, // 0: beat.GetBeatsResponse.beats:type_name -> beat.BeatInfo
+	0, // 1: beat.Beat.GetBeatsByIds:input_type -> beat.GetBeatsRequest
+	1, // 2: beat.Beat.GetBeatsByIds:output_type -> beat.GetBeatsResponse
+	2, // [2:3] is the sub-list for method output_type
+	1, // [1:2] is the sub-list for method input_type
+	1, // [1:1] is the sub-list for extension type_name
+	1, // [1:1] is the sub-list for extension extendee
+	0, // [0:1] is the sub-list for field type_name
 }
 
 func init() { file_beat_beat_proto_init() }
@@ -277,7 +325,7 @@ func file_beat_beat_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_beat_beat_proto_rawDesc), len(file_beat_beat_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

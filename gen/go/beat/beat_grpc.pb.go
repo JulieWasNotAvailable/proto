@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Beat_GetBeatById_FullMethodName = "/beat.Beat/GetBeatById"
+	Beat_GetBeatsByIds_FullMethodName = "/beat.Beat/GetBeatsByIds"
 )
 
 // BeatClient is the client API for Beat service.
@@ -28,7 +28,7 @@ const (
 //
 // Beat is service for managing beats
 type BeatClient interface {
-	GetBeatById(ctx context.Context, in *GetBeatRequest, opts ...grpc.CallOption) (*GetBeatResponse, error)
+	GetBeatsByIds(ctx context.Context, in *GetBeatsRequest, opts ...grpc.CallOption) (*GetBeatsResponse, error)
 }
 
 type beatClient struct {
@@ -39,10 +39,10 @@ func NewBeatClient(cc grpc.ClientConnInterface) BeatClient {
 	return &beatClient{cc}
 }
 
-func (c *beatClient) GetBeatById(ctx context.Context, in *GetBeatRequest, opts ...grpc.CallOption) (*GetBeatResponse, error) {
+func (c *beatClient) GetBeatsByIds(ctx context.Context, in *GetBeatsRequest, opts ...grpc.CallOption) (*GetBeatsResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetBeatResponse)
-	err := c.cc.Invoke(ctx, Beat_GetBeatById_FullMethodName, in, out, cOpts...)
+	out := new(GetBeatsResponse)
+	err := c.cc.Invoke(ctx, Beat_GetBeatsByIds_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -55,7 +55,7 @@ func (c *beatClient) GetBeatById(ctx context.Context, in *GetBeatRequest, opts .
 //
 // Beat is service for managing beats
 type BeatServer interface {
-	GetBeatById(context.Context, *GetBeatRequest) (*GetBeatResponse, error)
+	GetBeatsByIds(context.Context, *GetBeatsRequest) (*GetBeatsResponse, error)
 	mustEmbedUnimplementedBeatServer()
 }
 
@@ -66,8 +66,8 @@ type BeatServer interface {
 // pointer dereference when methods are called.
 type UnimplementedBeatServer struct{}
 
-func (UnimplementedBeatServer) GetBeatById(context.Context, *GetBeatRequest) (*GetBeatResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetBeatById not implemented")
+func (UnimplementedBeatServer) GetBeatsByIds(context.Context, *GetBeatsRequest) (*GetBeatsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBeatsByIds not implemented")
 }
 func (UnimplementedBeatServer) mustEmbedUnimplementedBeatServer() {}
 func (UnimplementedBeatServer) testEmbeddedByValue()              {}
@@ -90,20 +90,20 @@ func RegisterBeatServer(s grpc.ServiceRegistrar, srv BeatServer) {
 	s.RegisterService(&Beat_ServiceDesc, srv)
 }
 
-func _Beat_GetBeatById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetBeatRequest)
+func _Beat_GetBeatsByIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetBeatsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(BeatServer).GetBeatById(ctx, in)
+		return srv.(BeatServer).GetBeatsByIds(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Beat_GetBeatById_FullMethodName,
+		FullMethod: Beat_GetBeatsByIds_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BeatServer).GetBeatById(ctx, req.(*GetBeatRequest))
+		return srv.(BeatServer).GetBeatsByIds(ctx, req.(*GetBeatsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -116,8 +116,8 @@ var Beat_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*BeatServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetBeatById",
-			Handler:    _Beat_GetBeatById_Handler,
+			MethodName: "GetBeatsByIds",
+			Handler:    _Beat_GetBeatsByIds_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

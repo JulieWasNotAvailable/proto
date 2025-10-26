@@ -6,15 +6,18 @@ option go_package = "github.com/JulieWasNotAvailable/protos/gen/go/beat;beatv1";
 
 // Beat is service for managing beats
 service Beat {
-  rpc GetBeatById(GetBeatRequest) returns (GetBeatResponse); 
+  rpc GetBeatsByIds(GetBeatsRequest) returns (GetBeatsResponse); 
 }
 
-
-message GetBeatRequest {
-  string beat_id = 1; // Beat id, = 1 stays for the number of the field (kinda like a key), string is cuz it's a uuid
+message GetBeatsRequest {
+  repeated string beat_id = 1; // Beat id, = 1 stays for the number of the field (kinda like a key), string is cuz it's a uuid
 }
 
-message GetBeatResponse {
+message GetBeatsResponse {
+  repeated BeatInfo beats = 1;
+}
+
+message BeatInfo {
   string beat_id = 1;
   string name = 2;
   // AvailableFiles AvailableFiles = 3; //idk how to make available files another struct
