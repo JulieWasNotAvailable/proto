@@ -28,7 +28,7 @@ const (
 //
 // Beat is service for managing beats
 type BeatClient interface {
-	GetBeatById(ctx context.Context, in *GetBeatRequest, opts ...grpc.CallOption) (*GetBeatRequest, error)
+	GetBeatById(ctx context.Context, in *GetBeatRequest, opts ...grpc.CallOption) (*GetBeatResponse, error)
 }
 
 type beatClient struct {
@@ -39,9 +39,9 @@ func NewBeatClient(cc grpc.ClientConnInterface) BeatClient {
 	return &beatClient{cc}
 }
 
-func (c *beatClient) GetBeatById(ctx context.Context, in *GetBeatRequest, opts ...grpc.CallOption) (*GetBeatRequest, error) {
+func (c *beatClient) GetBeatById(ctx context.Context, in *GetBeatRequest, opts ...grpc.CallOption) (*GetBeatResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetBeatRequest)
+	out := new(GetBeatResponse)
 	err := c.cc.Invoke(ctx, Beat_GetBeatById_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -55,7 +55,7 @@ func (c *beatClient) GetBeatById(ctx context.Context, in *GetBeatRequest, opts .
 //
 // Beat is service for managing beats
 type BeatServer interface {
-	GetBeatById(context.Context, *GetBeatRequest) (*GetBeatRequest, error)
+	GetBeatById(context.Context, *GetBeatRequest) (*GetBeatResponse, error)
 	mustEmbedUnimplementedBeatServer()
 }
 
@@ -66,7 +66,7 @@ type BeatServer interface {
 // pointer dereference when methods are called.
 type UnimplementedBeatServer struct{}
 
-func (UnimplementedBeatServer) GetBeatById(context.Context, *GetBeatRequest) (*GetBeatRequest, error) {
+func (UnimplementedBeatServer) GetBeatById(context.Context, *GetBeatRequest) (*GetBeatResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBeatById not implemented")
 }
 func (UnimplementedBeatServer) mustEmbedUnimplementedBeatServer() {}

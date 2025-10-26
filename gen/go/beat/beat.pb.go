@@ -235,9 +235,9 @@ const file_beat_beat_proto_rawDesc = "" +
 	"\x05plays\x18\x12 \x01(\x03R\x05plays\x12\x16\n" +
 	"\x06status\x18\x13 \x01(\tR\x06status\x12\x1d\n" +
 	"\n" +
-	"created_at\x18\x14 \x01(\x03R\tcreatedAt2A\n" +
-	"\x04Beat\x129\n" +
-	"\vGetBeatById\x12\x14.beat.GetBeatRequest\x1a\x14.beat.GetBeatRequestB:Z8github.com/JulieWasNotAvailable/proto/gen/go/beat;beatv1b\x06proto3"
+	"created_at\x18\x14 \x01(\x03R\tcreatedAt2B\n" +
+	"\x04Beat\x12:\n" +
+	"\vGetBeatById\x12\x14.beat.GetBeatRequest\x1a\x15.beat.GetBeatResponseB:Z8github.com/JulieWasNotAvailable/proto/gen/go/beat;beatv1b\x06proto3"
 
 var (
 	file_beat_beat_proto_rawDescOnce sync.Once
@@ -258,7 +258,7 @@ var file_beat_beat_proto_goTypes = []any{
 }
 var file_beat_beat_proto_depIdxs = []int32{
 	0, // 0: beat.Beat.GetBeatById:input_type -> beat.GetBeatRequest
-	0, // 1: beat.Beat.GetBeatById:output_type -> beat.GetBeatRequest
+	1, // 1: beat.Beat.GetBeatById:output_type -> beat.GetBeatResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
